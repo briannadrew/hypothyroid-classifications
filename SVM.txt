@@ -1,0 +1,72 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LibSVM -S 0 -K 2 -D 3 -G 0.0 -R 0.0 -N 0.5 -M 40.0 -C 1.0 -E 0.001 -P 0.1 -model "C:\\Program Files\\Weka-3-8-4" -seed 1
+Relation:     hypothyroid
+Instances:    3772
+Attributes:   30
+              age
+              sex
+              on thyroxine
+              query on thyroxine
+              on antithyroid medication
+              sick
+              pregnant
+              thyroid surgery
+              I131 treatment
+              query hypothyroid
+              query hyperthyroid
+              lithium
+              goitre
+              tumor
+              hypopituitary
+              psych
+              TSH measured
+              TSH
+              T3 measured
+              T3
+              TT4 measured
+              TT4
+              T4U measured
+              T4U
+              FTI measured
+              FTI
+              TBG measured
+              TBG
+              referral source
+              Class
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+LibSVM wrapper, original code by Yasser EL-Manzalawy (= WLSVM)
+
+Time taken to build model: 1.54 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        3493               92.6034 %
+Incorrectly Classified Instances       279                7.3966 %
+Kappa statistic                          0.0776
+Mean absolute error                      0.037
+Root mean squared error                  0.1923
+Relative absolute error                 50.7396 %
+Root relative squared error            100.9833 %
+Total Number of Instances             3772
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.955    0.926      1.000    0.962      0.203    0.522     0.926     negative
+                 0.031    0.000    0.857      0.031    0.060      0.157    0.515     0.076     compensated_hypothyroid
+                 0.063    0.000    1.000      0.063    0.119      0.248    0.532     0.087     primary_hypothyroid
+                 0.000    0.000    ?          0.000    ?          ?        0.500     0.001     secondary_hypothyroid
+Weighted Avg.    0.926    0.882    ?          0.926    ?          ?        0.522     0.861
+
+=== Confusion Matrix ===
+
+    a    b    c    d   <-- classified as
+ 3481    0    0    0 |    a = negative
+  188    6    0    0 |    b = compensated_hypothyroid
+   88    1    6    0 |    c = primary_hypothyroid
+    2    0    0    0 |    d = secondary_hypothyroid
