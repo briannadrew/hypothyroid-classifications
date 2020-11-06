@@ -1,0 +1,735 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.meta.AdaBoostM1 -P 100 -S 1 -I 10 -W weka.classifiers.trees.J48 -- -C 0.25 -M 2
+Relation:     hypothyroid
+Instances:    3772
+Attributes:   30
+              age
+              sex
+              on thyroxine
+              query on thyroxine
+              on antithyroid medication
+              sick
+              pregnant
+              thyroid surgery
+              I131 treatment
+              query hypothyroid
+              query hyperthyroid
+              lithium
+              goitre
+              tumor
+              hypopituitary
+              psych
+              TSH measured
+              TSH
+              T3 measured
+              T3
+              TT4 measured
+              TT4
+              T4U measured
+              T4U
+              FTI measured
+              FTI
+              TBG measured
+              TBG
+              referral source
+              Class
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+AdaBoostM1: Base classifiers and their weights:
+
+J48 pruned tree
+------------------
+
+TSH <= 6: negative (3366.31/2.0)
+TSH > 6
+|   FTI <= 64
+|   |   TSH measured = t
+|   |   |   T4U measured = t
+|   |   |   |   thyroid surgery = f
+|   |   |   |   |   T3 <= 2.3: primary_hypothyroid (82.7)
+|   |   |   |   |   T3 > 2.3
+|   |   |   |   |   |   TSH <= 15: negative (2.06/0.06)
+|   |   |   |   |   |   TSH > 15: primary_hypothyroid (3.24)
+|   |   |   |   thyroid surgery = t
+|   |   |   |   |   TT4 <= 49: negative (3.0)
+|   |   |   |   |   TT4 > 49: primary_hypothyroid (2.0)
+|   |   |   T4U measured = f: compensated_hypothyroid (7.08/2.62)
+|   |   TSH measured = f: negative (6.24)
+|   FTI > 64
+|   |   on thyroxine = f
+|   |   |   TSH measured = t
+|   |   |   |   thyroid surgery = f
+|   |   |   |   |   TT4 <= 150
+|   |   |   |   |   |   TT4 <= 48
+|   |   |   |   |   |   |   T4U measured = t: negative (2.0/1.0)
+|   |   |   |   |   |   |   T4U measured = f: primary_hypothyroid (3.04/0.04)
+|   |   |   |   |   |   TT4 > 48: compensated_hypothyroid (191.5/3.06)
+|   |   |   |   |   TT4 > 150: negative (9.16/0.16)
+|   |   |   |   thyroid surgery = t: negative (6.74)
+|   |   |   TSH measured = f: negative (30.75)
+|   |   on thyroxine = t: negative (56.17)
+
+Number of Leaves  : 	15
+
+Size of the tree : 	29
+
+
+Weight: 6.29
+
+J48 pruned tree
+------------------
+
+TT4 measured = t
+|   TT4 <= 48
+|   |   TSH <= 6.6
+|   |   |   referral source = SVHC: negative (1.5)
+|   |   |   referral source = other: secondary_hypothyroid (540.86/2.0)
+|   |   |   referral source = SVI: negative (8.01)
+|   |   |   referral source = STMW: secondary_hypothyroid (0.0)
+|   |   |   referral source = SVHD: secondary_hypothyroid (0.0)
+|   |   TSH > 6.6
+|   |   |   age <= 74: primary_hypothyroid (33.56/1.5)
+|   |   |   age > 74: compensated_hypothyroid (270.93/1.5)
+|   TT4 > 48
+|   |   TSH <= 6: negative (1563.46)
+|   |   TSH > 6
+|   |   |   age <= 78
+|   |   |   |   on thyroxine = f
+|   |   |   |   |   TSH measured = t
+|   |   |   |   |   |   thyroid surgery = f
+|   |   |   |   |   |   |   TT4 <= 149
+|   |   |   |   |   |   |   |   FTI <= 64: primary_hypothyroid (11.37/1.35)
+|   |   |   |   |   |   |   |   FTI > 64: compensated_hypothyroid (88.81)
+|   |   |   |   |   |   |   TT4 > 149: negative (4.01)
+|   |   |   |   |   |   thyroid surgery = t: negative (4.51/1.0)
+|   |   |   |   |   TSH measured = f: negative (16.03)
+|   |   |   |   on thyroxine = t: negative (27.96/1.0)
+|   |   |   age > 78
+|   |   |   |   age <= 79: negative (271.04/1.5)
+|   |   |   |   age > 79: compensated_hypothyroid (7.45/2.94)
+TT4 measured = f
+|   referral source = SVHC: negative (0.5)
+|   referral source = other: negative (111.71/1.0)
+|   referral source = SVI: primary_hypothyroid (270.93/1.5)
+|   referral source = STMW: primary_hypothyroid (538.86)
+|   referral source = SVHD: negative (0.5)
+
+Number of Leaves  : 	21
+
+Size of the tree : 	35
+
+
+Weight: 5.59
+
+J48 pruned tree
+------------------
+
+TSH <= 6.5
+|   TSH <= 0.015
+|   |   query hypothyroid = f: negative (30.4)
+|   |   query hypothyroid = t
+|   |   |   T4U measured = t: negative (2.02)
+|   |   |   T4U measured = f: secondary_hypothyroid (135.3/0.08)
+|   TSH > 0.015
+|   |   TSH <= 4.5: negative (1090.7)
+|   |   TSH > 4.5
+|   |   |   FTI <= 56
+|   |   |   |   T4U measured = t: secondary_hypothyroid (135.75/0.54)
+|   |   |   |   T4U measured = f: negative (5.64/0.14)
+|   |   |   FTI > 56
+|   |   |   |   T3 measured = t
+|   |   |   |   |   TSH <= 6: negative (24.25)
+|   |   |   |   |   TSH > 6: compensated_hypothyroid (6.56/2.18)
+|   |   |   |   T3 measured = f: negative (76.36/0.75)
+TSH > 6.5
+|   age <= 2: primary_hypothyroid (271.34/0.65)
+|   age > 2
+|   |   FTI <= 60
+|   |   |   age <= 17: negative (135.87/0.25)
+|   |   |   age > 17
+|   |   |   |   sex = F
+|   |   |   |   |   TSH measured = t
+|   |   |   |   |   |   TT4 <= 23
+|   |   |   |   |   |   |   thyroid surgery = f
+|   |   |   |   |   |   |   |   age <= 35: compensated_hypothyroid (4.09/0.63)
+|   |   |   |   |   |   |   |   age > 35: primary_hypothyroid (13.12)
+|   |   |   |   |   |   |   thyroid surgery = t: negative (67.36)
+|   |   |   |   |   |   TT4 > 23
+|   |   |   |   |   |   |   T4U measured = t: primary_hypothyroid (545.9)
+|   |   |   |   |   |   |   T4U measured = f
+|   |   |   |   |   |   |   |   T3 measured = t: compensated_hypothyroid (26.86/0.13)
+|   |   |   |   |   |   |   |   T3 measured = f: primary_hypothyroid (59.85)
+|   |   |   |   |   TSH measured = f: negative (33.02)
+|   |   |   |   sex = M
+|   |   |   |   |   T4U measured = t
+|   |   |   |   |   |   T3 <= 2.1: primary_hypothyroid (5.07/0.01)
+|   |   |   |   |   |   T3 > 2.1: negative (67.5)
+|   |   |   |   |   T4U measured = f
+|   |   |   |   |   |   TSH measured = t: compensated_hypothyroid (39.55/0.5)
+|   |   |   |   |   |   TSH measured = f: negative (2.28)
+|   |   FTI > 60
+|   |   |   age <= 79
+|   |   |   |   T3 <= 2.7
+|   |   |   |   |   TSH measured = t
+|   |   |   |   |   |   on thyroxine = f
+|   |   |   |   |   |   |   age <= 46
+|   |   |   |   |   |   |   |   age <= 44: compensated_hypothyroid (46.82/1.99)
+|   |   |   |   |   |   |   |   age > 44: primary_hypothyroid (48.4/0.88)
+|   |   |   |   |   |   |   age > 46: compensated_hypothyroid (375.6/2.51)
+|   |   |   |   |   |   on thyroxine = t: negative (10.24)
+|   |   |   |   |   TSH measured = f: negative (27.49)
+|   |   |   |   T3 > 2.7
+|   |   |   |   |   T3 measured = t: negative (161.33/1.51)
+|   |   |   |   |   T3 measured = f
+|   |   |   |   |   |   referral source = SVHC: negative (0.07)
+|   |   |   |   |   |   referral source = other
+|   |   |   |   |   |   |   TSH measured = t: compensated_hypothyroid (23.07/1.22)
+|   |   |   |   |   |   |   TSH measured = f: negative (7.97)
+|   |   |   |   |   |   referral source = SVI: primary_hypothyroid (19.96/0.12)
+|   |   |   |   |   |   referral source = STMW: compensated_hypothyroid (0.0)
+|   |   |   |   |   |   referral source = SVHD: compensated_hypothyroid (0.0)
+|   |   |   age > 79: negative (272.27/2.01)
+
+Number of Leaves  : 	35
+
+Size of the tree : 	66
+
+
+Weight: 5.59
+
+J48 pruned tree
+------------------
+
+TSH <= 6
+|   TSH <= 0.015
+|   |   query hypothyroid = f: negative (14.22)
+|   |   query hypothyroid = t: secondary_hypothyroid (68.89/1.03)
+|   TSH > 0.015
+|   |   TSH <= 4.5: negative (540.5)
+|   |   TSH > 4.5
+|   |   |   TSH <= 4.6
+|   |   |   |   TSH measured = t: secondary_hypothyroid (68.75/0.88)
+|   |   |   |   TSH measured = f: negative (2.14)
+|   |   |   TSH > 4.6: negative (83.11)
+TSH > 6
+|   FTI <= 64
+|   |   thyroid surgery = f
+|   |   |   age <= 84
+|   |   |   |   TSH measured = t
+|   |   |   |   |   sex = F
+|   |   |   |   |   |   T4U measured = t: primary_hypothyroid (574.98)
+|   |   |   |   |   |   T4U measured = f
+|   |   |   |   |   |   |   referral source = SVHC: primary_hypothyroid (0.0)
+|   |   |   |   |   |   |   referral source = other: compensated_hypothyroid (21.65)
+|   |   |   |   |   |   |   referral source = SVI: primary_hypothyroid (34.57/0.04)
+|   |   |   |   |   |   |   referral source = STMW: primary_hypothyroid (43.04)
+|   |   |   |   |   |   |   referral source = SVHD: primary_hypothyroid (0.0)
+|   |   |   |   |   sex = M
+|   |   |   |   |   |   TSH <= 20
+|   |   |   |   |   |   |   T3 <= 2.4
+|   |   |   |   |   |   |   |   on thyroxine = f: compensated_hypothyroid (23.39/0.25)
+|   |   |   |   |   |   |   |   on thyroxine = t: negative (4.68)
+|   |   |   |   |   |   |   T3 > 2.4: negative (40.57)
+|   |   |   |   |   |   TSH > 20: primary_hypothyroid (34.3/1.61)
+|   |   |   |   TSH measured = f: negative (25.5)
+|   |   |   age > 84: negative (33.87)
+|   |   thyroid surgery = t
+|   |   |   T3 measured = t
+|   |   |   |   referral source = SVHC: negative (0.0)
+|   |   |   |   referral source = other: negative (112.85)
+|   |   |   |   referral source = SVI: primary_hypothyroid (33.8)
+|   |   |   |   referral source = STMW: negative (0.0)
+|   |   |   |   referral source = SVHD: negative (0.0)
+|   |   |   T3 measured = f: primary_hypothyroid (33.8)
+|   FTI > 64
+|   |   T4U measured = t
+|   |   |   thyroid surgery = f
+|   |   |   |   TT4 <= 149
+|   |   |   |   |   on thyroxine = f
+|   |   |   |   |   |   T4U <= 0.98
+|   |   |   |   |   |   |   T3 <= 2.9
+|   |   |   |   |   |   |   |   T4U <= 0.5: negative (24.52)
+|   |   |   |   |   |   |   |   T4U > 0.5
+|   |   |   |   |   |   |   |   |   TSH measured = t: compensated_hypothyroid (251.33)
+|   |   |   |   |   |   |   |   |   TSH measured = f: negative (6.18)
+|   |   |   |   |   |   |   T3 > 2.9
+|   |   |   |   |   |   |   |   FTI <= 95: compensated_hypothyroid (28.48/0.52)
+|   |   |   |   |   |   |   |   FTI > 95: negative (78.3/0.24)
+|   |   |   |   |   |   T4U > 0.98
+|   |   |   |   |   |   |   TSH measured = t: compensated_hypothyroid (616.18)
+|   |   |   |   |   |   |   TSH measured = f: negative (4.91)
+|   |   |   |   |   on thyroxine = t: negative (174.87)
+|   |   |   |   TT4 > 149: negative (205.26)
+|   |   |   thyroid surgery = t: negative (202.2)
+|   |   T4U measured = f
+|   |   |   TSH measured = t
+|   |   |   |   referral source = SVHC: primary_hypothyroid (0.0)
+|   |   |   |   referral source = other
+|   |   |   |   |   on thyroxine = f
+|   |   |   |   |   |   thyroid surgery = f: compensated_hypothyroid (89.96)
+|   |   |   |   |   |   thyroid surgery = t: negative (22.24)
+|   |   |   |   |   on thyroxine = t: negative (22.32)
+|   |   |   |   referral source = SVI: primary_hypothyroid (111.87/0.25)
+|   |   |   |   referral source = STMW: primary_hypothyroid (89.63)
+|   |   |   |   referral source = SVHD: primary_hypothyroid (0.0)
+|   |   |   TSH measured = f: negative (49.13)
+
+Number of Leaves  : 	42
+
+Size of the tree : 	74
+
+
+Weight: 7.31
+
+J48 pruned tree
+------------------
+
+TSH <= 6
+|   TT4 <= 48
+|   |   age <= 46
+|   |   |   age <= 40: negative (36.71)
+|   |   |   age > 40: secondary_hypothyroid (68.01/0.1)
+|   |   age > 46: negative (53.71)
+|   TT4 > 48: negative (1659.89)
+TSH > 6
+|   FTI <= 64
+|   |   T4U measured = t
+|   |   |   age <= 84
+|   |   |   |   T3 <= 2.6
+|   |   |   |   |   thyroid surgery = f: primary_hypothyroid (479.23/0.1)
+|   |   |   |   |   thyroid surgery = t
+|   |   |   |   |   |   referral source = SVHC: negative (0.0)
+|   |   |   |   |   |   referral source = other
+|   |   |   |   |   |   |   T3 measured = t: negative (50.74)
+|   |   |   |   |   |   |   T3 measured = f: primary_hypothyroid (16.39)
+|   |   |   |   |   |   referral source = SVI: primary_hypothyroid (16.91)
+|   |   |   |   |   |   referral source = STMW: negative (0.0)
+|   |   |   |   |   |   referral source = SVHD: negative (0.0)
+|   |   |   |   T3 > 2.6: negative (17.97/1.05)
+|   |   |   age > 84: negative (16.91)
+|   |   T4U measured = f
+|   |   |   T3 measured = t
+|   |   |   |   thyroid surgery = f
+|   |   |   |   |   TSH <= 38
+|   |   |   |   |   |   TSH measured = t: compensated_hypothyroid (150.85)
+|   |   |   |   |   |   TSH measured = f: negative (3.65)
+|   |   |   |   |   TSH > 38: primary_hypothyroid (22.3/0.55)
+|   |   |   |   thyroid surgery = t: negative (7.24)
+|   |   |   T3 measured = f
+|   |   |   |   on thyroxine = f
+|   |   |   |   |   TSH measured = t: primary_hypothyroid (43.77)
+|   |   |   |   |   TSH measured = f: negative (2.32)
+|   |   |   |   on thyroxine = t: negative (11.19)
+|   FTI > 64
+|   |   thyroid surgery = f
+|   |   |   on thyroxine = f
+|   |   |   |   TT4 measured = t
+|   |   |   |   |   TT4 <= 150
+|   |   |   |   |   |   TT4 <= 37: primary_hypothyroid (28.87)
+|   |   |   |   |   |   TT4 > 37
+|   |   |   |   |   |   |   TT4 <= 97
+|   |   |   |   |   |   |   |   TT4 <= 92
+|   |   |   |   |   |   |   |   |   TSH <= 6.5
+|   |   |   |   |   |   |   |   |   |   TSH <= 6.4: compensated_hypothyroid (27.17/0.21)
+|   |   |   |   |   |   |   |   |   |   TSH > 6.4: negative (17.17/0.13)
+|   |   |   |   |   |   |   |   |   TSH > 6.5: compensated_hypothyroid (205.69/1.56)
+|   |   |   |   |   |   |   |   TT4 > 92: negative (34.98/0.63)
+|   |   |   |   |   |   |   TT4 > 97: compensated_hypothyroid (399.11/1.89)
+|   |   |   |   |   TT4 > 150: negative (102.01)
+|   |   |   |   TT4 measured = f
+|   |   |   |   |   TSH measured = t
+|   |   |   |   |   |   T3 measured = t: compensated_hypothyroid (19.29)
+|   |   |   |   |   |   T3 measured = f: primary_hypothyroid (58.09)
+|   |   |   |   |   TSH measured = f: negative (8.45)
+|   |   |   on thyroxine = t: negative (102.6)
+|   |   thyroid surgery = t: negative (110.78)
+
+Number of Leaves  : 	32
+
+Size of the tree : 	60
+
+
+Weight: 6.72
+
+J48 pruned tree
+------------------
+
+TSH measured = t
+|   TSH <= 6
+|   |   FTI measured = t
+|   |   |   FTI <= 54
+|   |   |   |   FTI <= 53: negative (51.75)
+|   |   |   |   FTI > 53: secondary_hypothyroid (17.0)
+|   |   |   FTI > 54: negative (815.42)
+|   |   FTI measured = f
+|   |   |   query hypothyroid = f: negative (21.26)
+|   |   |   query hypothyroid = t: secondary_hypothyroid (17.25/0.25)
+|   TSH > 6
+|   |   FTI <= 64
+|   |   |   T4U measured = t
+|   |   |   |   age <= 84
+|   |   |   |   |   T3 <= 2.6
+|   |   |   |   |   |   thyroid surgery = f: primary_hypothyroid (239.86)
+|   |   |   |   |   |   thyroid surgery = t
+|   |   |   |   |   |   |   referral source = SVHC: negative (0.0)
+|   |   |   |   |   |   |   referral source = other
+|   |   |   |   |   |   |   |   T3 measured = t: negative (25.4)
+|   |   |   |   |   |   |   |   T3 measured = f: primary_hypothyroid (8.21)
+|   |   |   |   |   |   |   referral source = SVI: primary_hypothyroid (8.47)
+|   |   |   |   |   |   |   referral source = STMW: negative (0.0)
+|   |   |   |   |   |   |   referral source = SVHD: negative (0.0)
+|   |   |   |   |   T3 > 2.6: negative (8.99/0.53)
+|   |   |   |   age > 84: negative (8.47)
+|   |   |   T4U measured = f
+|   |   |   |   T3 measured = t
+|   |   |   |   |   thyroid surgery = f
+|   |   |   |   |   |   TSH <= 38: compensated_hypothyroid (52.19)
+|   |   |   |   |   |   TSH > 38: primary_hypothyroid (7.53/0.01)
+|   |   |   |   |   thyroid surgery = t: negative (2.5)
+|   |   |   |   T3 measured = f
+|   |   |   |   |   on thyroxine = f: primary_hypothyroid (15.14)
+|   |   |   |   |   on thyroxine = t: negative (2.5)
+|   |   FTI > 64
+|   |   |   thyroid surgery = f
+|   |   |   |   on thyroxine = f
+|   |   |   |   |   TSH <= 23
+|   |   |   |   |   |   TT4 measured = t
+|   |   |   |   |   |   |   TT4 <= 150
+|   |   |   |   |   |   |   |   T3 <= 3.2
+|   |   |   |   |   |   |   |   |   TT4 <= 48
+|   |   |   |   |   |   |   |   |   |   T3 measured = t: compensated_hypothyroid (17.0)
+|   |   |   |   |   |   |   |   |   |   T3 measured = f: negative (7.57)
+|   |   |   |   |   |   |   |   |   TT4 > 48: compensated_hypothyroid (570.73)
+|   |   |   |   |   |   |   |   T3 > 3.2
+|   |   |   |   |   |   |   |   |   TT4 <= 94
+|   |   |   |   |   |   |   |   |   |   FTI <= 95: compensated_hypothyroid (5.5)
+|   |   |   |   |   |   |   |   |   |   FTI > 95: negative (17.91/0.01)
+|   |   |   |   |   |   |   |   |   TT4 > 94: compensated_hypothyroid (47.53)
+|   |   |   |   |   |   |   TT4 > 150: negative (50.68)
+|   |   |   |   |   |   TT4 measured = f
+|   |   |   |   |   |   |   sex = F: primary_hypothyroid (11.95)
+|   |   |   |   |   |   |   sex = M: compensated_hypothyroid (5.95)
+|   |   |   |   |   TSH > 23
+|   |   |   |   |   |   referral source = SVHC: primary_hypothyroid (0.0)
+|   |   |   |   |   |   referral source = other: compensated_hypothyroid (15.0)
+|   |   |   |   |   |   referral source = SVI: primary_hypothyroid (29.89/0.13)
+|   |   |   |   |   |   referral source = STMW: primary_hypothyroid (12.01/0.06)
+|   |   |   |   |   |   referral source = SVHD: primary_hypothyroid (0.0)
+|   |   |   |   on thyroxine = t: negative (49.65)
+|   |   |   thyroid surgery = t: negative (56.57)
+TSH measured = f: negative (1572.11)
+
+Number of Leaves  : 	36
+
+Size of the tree : 	65
+
+
+Weight: 9.05
+
+J48 pruned tree
+------------------
+
+TSH <= 6
+|   TT4 <= 48
+|   |   TSH <= 0.03: secondary_hypothyroid (8.54/0.04)
+|   |   TSH > 0.03
+|   |   |   sex = F
+|   |   |   |   age <= 47: secondary_hypothyroid (8.7/0.2)
+|   |   |   |   age > 47: negative (8.92)
+|   |   |   sex = M: negative (39.47)
+|   TT4 > 48: negative (1878.55)
+TSH > 6
+|   TSH measured = t
+|   |   TT4 <= 149
+|   |   |   thyroid surgery = f
+|   |   |   |   on thyroxine = f
+|   |   |   |   |   FTI <= 64
+|   |   |   |   |   |   age <= 84
+|   |   |   |   |   |   |   T4U measured = t
+|   |   |   |   |   |   |   |   T3 <= 2.6: primary_hypothyroid (107.13)
+|   |   |   |   |   |   |   |   T3 > 2.6: negative (4.4/0.17)
+|   |   |   |   |   |   |   T4U measured = f
+|   |   |   |   |   |   |   |   T3 measured = t: compensated_hypothyroid (12.21/1.57)
+|   |   |   |   |   |   |   |   T3 measured = f: primary_hypothyroid (2.49)
+|   |   |   |   |   |   age > 84: negative (4.23)
+|   |   |   |   |   FTI > 64
+|   |   |   |   |   |   TT4 measured = t
+|   |   |   |   |   |   |   TT4 <= 48
+|   |   |   |   |   |   |   |   T4U measured = t
+|   |   |   |   |   |   |   |   |   T3 measured = t: compensated_hypothyroid (8.5)
+|   |   |   |   |   |   |   |   |   T3 measured = f: negative (4.23)
+|   |   |   |   |   |   |   |   T4U measured = f: primary_hypothyroid (11.1)
+|   |   |   |   |   |   |   TT4 > 48
+|   |   |   |   |   |   |   |   age <= 78: compensated_hypothyroid (822.61)
+|   |   |   |   |   |   |   |   age > 78
+|   |   |   |   |   |   |   |   |   T3 <= 2.7: compensated_hypothyroid (39.2)
+|   |   |   |   |   |   |   |   |   T3 > 2.7
+|   |   |   |   |   |   |   |   |   |   T3 measured = t: negative (8.5)
+|   |   |   |   |   |   |   |   |   |   T3 measured = f: compensated_hypothyroid (7.26)
+|   |   |   |   |   |   TT4 measured = f
+|   |   |   |   |   |   |   T3 measured = t: compensated_hypothyroid (5.87)
+|   |   |   |   |   |   |   T3 measured = f: primary_hypothyroid (17.67)
+|   |   |   |   on thyroxine = t
+|   |   |   |   |   TSH <= 29: negative (25.11/0.03)
+|   |   |   |   |   TSH > 29: primary_hypothyroid (12.83/0.08)
+|   |   |   thyroid surgery = t
+|   |   |   |   T3 <= 1.9
+|   |   |   |   |   T3 measured = t: negative (33.79)
+|   |   |   |   |   T3 measured = f
+|   |   |   |   |   |   T4U <= 1.12: negative (7.51)
+|   |   |   |   |   |   T4U > 1.12: primary_hypothyroid (3.76)
+|   |   |   |   T3 > 1.9: primary_hypothyroid (5.65/0.94)
+|   |   TT4 > 149
+|   |   |   TT4 measured = t: negative (294.82)
+|   |   |   TT4 measured = f
+|   |   |   |   referral source = SVHC: primary_hypothyroid (0.0)
+|   |   |   |   referral source = other: compensated_hypothyroid (2.66/0.88)
+|   |   |   |   referral source = SVI: primary_hypothyroid (1.78)
+|   |   |   |   referral source = STMW: primary_hypothyroid (3.56)
+|   |   |   |   referral source = SVHD: primary_hypothyroid (0.0)
+|   TSH measured = f: negative (380.95)
+
+Number of Leaves  : 	32
+
+Size of the tree : 	60
+
+
+Weight: 10.08
+
+J48 pruned tree
+------------------
+
+TT4 <= 44
+|   TSH <= 6.1
+|   |   T3 <= 2.5
+|   |   |   TSH <= 0.055: secondary_hypothyroid (4.26/0.01)
+|   |   |   TSH > 0.055: negative (6.58)
+|   |   T3 > 2.5: negative (231.77)
+|   TSH > 6.1
+|   |   thyroid surgery = f
+|   |   |   TT4 <= 43: primary_hypothyroid (400.44/1.7)
+|   |   |   TT4 > 43
+|   |   |   |   sex = F: compensated_hypothyroid (4.34/0.08)
+|   |   |   |   sex = M: primary_hypothyroid (11.88/0.05)
+|   |   thyroid surgery = t: negative (6.35)
+TT4 > 44
+|   referral source = SVHC
+|   |   age <= 42: negative (392.62/0.03)
+|   |   age > 42: compensated_hypothyroid (10.14/1.45)
+|   referral source = other
+|   |   age <= 79
+|   |   |   TT4 <= 63
+|   |   |   |   sex = F
+|   |   |   |   |   TSH measured = t
+|   |   |   |   |   |   TSH <= 7.3
+|   |   |   |   |   |   |   T3 measured = t: secondary_hypothyroid (4.35/0.1)
+|   |   |   |   |   |   |   T3 measured = f: negative (3.44)
+|   |   |   |   |   |   TSH > 7.3: primary_hypothyroid (10.67/0.04)
+|   |   |   |   |   TSH measured = f: negative (6.58)
+|   |   |   |   sex = M: negative (22.33/0.07)
+|   |   |   TT4 > 63
+|   |   |   |   on thyroxine = f
+|   |   |   |   |   TSH <= 6: negative (711.25)
+|   |   |   |   |   TSH > 6
+|   |   |   |   |   |   TSH measured = t
+|   |   |   |   |   |   |   thyroid surgery = f
+|   |   |   |   |   |   |   |   TT4 <= 152
+|   |   |   |   |   |   |   |   |   age <= 77: compensated_hypothyroid (79.56/2.12)
+|   |   |   |   |   |   |   |   |   age > 77
+|   |   |   |   |   |   |   |   |   |   T4U <= 0.96: negative (4.25)
+|   |   |   |   |   |   |   |   |   |   T4U > 0.96: compensated_hypothyroid (6.35)
+|   |   |   |   |   |   |   |   TT4 > 152: negative (4.38/0.16)
+|   |   |   |   |   |   |   thyroid surgery = t: negative (8.44)
+|   |   |   |   |   |   TSH measured = f: negative (65.6)
+|   |   |   |   on thyroxine = t: negative (1100.83/2.12)
+|   |   age > 79
+|   |   |   TSH measured = t
+|   |   |   |   on thyroxine = f
+|   |   |   |   |   age <= 86
+|   |   |   |   |   |   FTI <= 89: negative (2.17)
+|   |   |   |   |   |   FTI > 89: compensated_hypothyroid (12.88/0.22)
+|   |   |   |   |   age > 86: negative (2.2)
+|   |   |   |   on thyroxine = t: negative (4.27)
+|   |   |   TSH measured = f: negative (6.58)
+|   referral source = SVI
+|   |   TSH <= 6: negative (84.17)
+|   |   TSH > 6
+|   |   |   TSH measured = t
+|   |   |   |   thyroid surgery = f
+|   |   |   |   |   age <= 68
+|   |   |   |   |   |   TT4 measured = t
+|   |   |   |   |   |   |   TT4 <= 107
+|   |   |   |   |   |   |   |   age <= 37
+|   |   |   |   |   |   |   |   |   age <= 30: compensated_hypothyroid (6.58/0.02)
+|   |   |   |   |   |   |   |   |   age > 30: primary_hypothyroid (2.11)
+|   |   |   |   |   |   |   |   age > 37: compensated_hypothyroid (311.61/0.02)
+|   |   |   |   |   |   |   TT4 > 107
+|   |   |   |   |   |   |   |   age <= 51: compensated_hypothyroid (6.34)
+|   |   |   |   |   |   |   |   age > 51: negative (2.13/0.02)
+|   |   |   |   |   |   TT4 measured = f: primary_hypothyroid (3.5)
+|   |   |   |   |   age > 68
+|   |   |   |   |   |   T3 measured = t: primary_hypothyroid (20.42/0.15)
+|   |   |   |   |   |   T3 measured = f: compensated_hypothyroid (2.11)
+|   |   |   |   thyroid surgery = t: negative (6.34/2.12)
+|   |   |   TSH measured = f: negative (12.13)
+|   referral source = STMW
+|   |   TT4 measured = t
+|   |   |   T4U <= 0.99
+|   |   |   |   thyroid surgery = f: compensated_hypothyroid (8.77/0.11)
+|   |   |   |   thyroid surgery = t: negative (2.11)
+|   |   |   T4U > 0.99
+|   |   |   |   TT4 <= 113
+|   |   |   |   |   T3 <= 2.1: compensated_hypothyroid (2.17/0.06)
+|   |   |   |   |   T3 > 2.1: negative (6.69/0.01)
+|   |   |   |   TT4 > 113: negative (149.11)
+|   |   TT4 measured = f: primary_hypothyroid (7.0)
+|   referral source = SVHD: negative (14.2/0.02)
+
+Number of Leaves  : 	45
+
+Size of the tree : 	86
+
+
+Weight: 6.08
+
+J48 pruned tree
+------------------
+
+FTI <= 64
+|   T4U measured = t
+|   |   TSH measured = t
+|   |   |   TSH <= 7.6
+|   |   |   |   TSH <= 5.8
+|   |   |   |   |   T4U <= 0.89
+|   |   |   |   |   |   sex = F: secondary_hypothyroid (2.13/0.0)
+|   |   |   |   |   |   sex = M: negative (2.14)
+|   |   |   |   |   T4U > 0.89: negative (13.11)
+|   |   |   |   TSH > 5.8: primary_hypothyroid (8.03/1.06)
+|   |   |   TSH > 7.6
+|   |   |   |   FTI <= 46
+|   |   |   |   |   thyroid surgery = f: primary_hypothyroid (102.41)
+|   |   |   |   |   thyroid surgery = t: negative (3.18)
+|   |   |   |   FTI > 46: primary_hypothyroid (1516.29/1.06)
+|   |   TSH measured = f: negative (9.85)
+|   T4U measured = f
+|   |   TSH <= 6: negative (309.22/1.15)
+|   |   TSH > 6
+|   |   |   on thyroxine = f
+|   |   |   |   T3 measured = t
+|   |   |   |   |   TSH <= 25: compensated_hypothyroid (11.4/0.09)
+|   |   |   |   |   TSH > 25: primary_hypothyroid (2.88/1.17)
+|   |   |   |   T3 measured = f: primary_hypothyroid (3.51/0.06)
+|   |   |   on thyroxine = t: negative (51.69)
+FTI > 64
+|   on thyroxine = f
+|   |   TSH <= 6: negative (821.6/0.98)
+|   |   TSH > 6
+|   |   |   TSH measured = t
+|   |   |   |   thyroid surgery = f
+|   |   |   |   |   TT4 <= 153: compensated_hypothyroid (263.72/8.01)
+|   |   |   |   |   TT4 > 153: negative (73.66/0.86)
+|   |   |   |   thyroid surgery = t: negative (6.83)
+|   |   |   TSH measured = f: negative (61.75)
+|   on thyroxine = t: negative (508.58)
+
+Number of Leaves  : 	19
+
+Size of the tree : 	37
+
+
+Weight: 5.77
+
+J48 pruned tree
+------------------
+
+TSH <= 16
+|   TT4 <= 44
+|   |   TSH <= 6.1
+|   |   |   query hypothyroid = f: negative (51.88)
+|   |   |   query hypothyroid = t
+|   |   |   |   TT4 measured = t: secondary_hypothyroid (343.96)
+|   |   |   |   TT4 measured = f: negative (11.05)
+|   |   TSH > 6.1: primary_hypothyroid (50.85/0.25)
+|   TT4 > 44
+|   |   sick = f
+|   |   |   referral source = SVHC: negative (433.55/5.67)
+|   |   |   referral source = other
+|   |   |   |   age <= 42
+|   |   |   |   |   TSH measured = t
+|   |   |   |   |   |   thyroid surgery = f
+|   |   |   |   |   |   |   TSH <= 6: negative (4.21)
+|   |   |   |   |   |   |   TSH > 6: compensated_hypothyroid (12.54/0.55)
+|   |   |   |   |   |   thyroid surgery = t: negative (2.48)
+|   |   |   |   |   TSH measured = f: negative (21.5)
+|   |   |   |   age > 42: negative (1076.95/9.63)
+|   |   |   referral source = SVI
+|   |   |   |   TSH <= 6: negative (21.12)
+|   |   |   |   TSH > 6
+|   |   |   |   |   on thyroxine = f
+|   |   |   |   |   |   FTI <= 62: primary_hypothyroid (5.85/0.61)
+|   |   |   |   |   |   FTI > 62: compensated_hypothyroid (24.08/2.3)
+|   |   |   |   |   on thyroxine = t: negative (3.48)
+|   |   |   referral source = STMW
+|   |   |   |   TSH <= 5.9: negative (22.15)
+|   |   |   |   TSH > 5.9: compensated_hypothyroid (5.66/2.09)
+|   |   |   referral source = SVHD: negative (3.87/0.87)
+|   |   sick = t: compensated_hypothyroid (9.35/1.66)
+TSH > 16
+|   TT4 <= 71
+|   |   query hyperthyroid = f
+|   |   |   FTI <= 64
+|   |   |   |   TSH measured = t: primary_hypothyroid (1248.9/2.01)
+|   |   |   |   TSH measured = f: negative (2.67)
+|   |   |   FTI > 64
+|   |   |   |   T4U measured = t: compensated_hypothyroid (38.1/0.88)
+|   |   |   |   T4U measured = f: primary_hypothyroid (24.58/0.05)
+|   |   query hyperthyroid = t: negative (47.43/0.01)
+|   TT4 > 71
+|   |   age <= 67: negative (259.06/1.05)
+|   |   age > 67
+|   |   |   TSH measured = t: compensated_hypothyroid (37.99/1.41)
+|   |   |   TSH measured = f: negative (8.75)
+
+Number of Leaves  : 	26
+
+Size of the tree : 	48
+
+
+Weight: 4.95
+
+Number of performed Iterations: 10
+
+
+Time taken to build model: 0.47 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        3756               99.5758 %
+Incorrectly Classified Instances        16                0.4242 %
+Kappa statistic                          0.9709
+Mean absolute error                      0.0021
+Root mean squared error                  0.045
+Relative absolute error                  2.8446 %
+Root relative squared error             23.6542 %
+Total Number of Instances             3772
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.997    0.024    0.998      0.997    0.998      0.970    0.997     1.000     negative
+                 0.979    0.001    0.984      0.979    0.982      0.981    1.000     0.993     compensated_hypothyroid
+                 0.989    0.001    0.959      0.989    0.974      0.974    0.999     0.966     primary_hypothyroid
+                 0.000    0.001    0.000      0.000    0.000      -0.001   0.827     0.002     secondary_hypothyroid
+Weighted Avg.    0.996    0.022    0.996      0.996    0.996      0.970    0.997     0.998
+
+=== Confusion Matrix ===
+
+    a    b    c    d   <-- classified as
+ 3472    3    4    2 |    a = negative
+    4  190    0    0 |    b = compensated_hypothyroid
+    1    0   94    0 |    c = primary_hypothyroid
+    2    0    0    0 |    d = secondary_hypothyroid

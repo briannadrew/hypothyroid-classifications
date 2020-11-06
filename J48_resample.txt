@@ -1,0 +1,114 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     hypothyroid-weka.filters.supervised.instance.Resample-B1.0-S1-Z184.6
+Instances:    6960
+Attributes:   30
+              age
+              sex
+              on thyroxine
+              query on thyroxine
+              on antithyroid medication
+              sick
+              pregnant
+              thyroid surgery
+              I131 treatment
+              query hypothyroid
+              query hyperthyroid
+              lithium
+              goitre
+              tumor
+              hypopituitary
+              psych
+              TSH measured
+              TSH
+              T3 measured
+              T3
+              TT4 measured
+              TT4
+              T4U measured
+              T4U
+              FTI measured
+              FTI
+              TBG measured
+              TBG
+              referral source
+              Class
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+TSH <= 6
+|   TT4 <= 48
+|   |   TT4 measured = t
+|   |   |   referral source = SVHC: negative (1.0)
+|   |   |   referral source = other: secondary_hypothyroid (1740.0)
+|   |   |   referral source = SVI: negative (8.0)
+|   |   |   referral source = STMW: secondary_hypothyroid (0.0)
+|   |   |   referral source = SVHD: secondary_hypothyroid (0.0)
+|   |   TT4 measured = f: negative (30.37)
+|   TT4 > 48: negative (1569.31)
+TSH > 6
+|   TSH measured = t
+|   |   FTI <= 64
+|   |   |   T4U measured = t: primary_hypothyroid (1608.0/2.0)
+|   |   |   T4U measured = f
+|   |   |   |   TSH <= 38
+|   |   |   |   |   T3 measured = t: compensated_hypothyroid (81.9)
+|   |   |   |   |   T3 measured = f: primary_hypothyroid (18.48/1.0)
+|   |   |   |   TSH > 38: primary_hypothyroid (49.44)
+|   |   FTI > 64
+|   |   |   on thyroxine = f
+|   |   |   |   TT4 <= 37: primary_hypothyroid (38.35/0.15)
+|   |   |   |   TT4 > 37
+|   |   |   |   |   thyroid surgery = f
+|   |   |   |   |   |   TT4 measured = t
+|   |   |   |   |   |   |   TT4 <= 145: compensated_hypothyroid (1622.09/3.0)
+|   |   |   |   |   |   |   TT4 > 145
+|   |   |   |   |   |   |   |   TT4 <= 154: compensated_hypothyroid (32.0)
+|   |   |   |   |   |   |   |   TT4 > 154: negative (3.0)
+|   |   |   |   |   |   TT4 measured = f
+|   |   |   |   |   |   |   T3 measured = t: compensated_hypothyroid (6.85)
+|   |   |   |   |   |   |   T3 measured = f: primary_hypothyroid (28.88)
+|   |   |   |   |   thyroid surgery = t: negative (7.0)
+|   |   |   on thyroxine = t: negative (24.0)
+|   TSH measured = f: negative (91.32)
+
+Number of Leaves  : 	20
+
+Size of the tree : 	36
+
+
+Time taken to build model: 0.05 seconds
+
+=== Stratified cross-validation ===
+=== Summary ===
+
+Correctly Classified Instances        6951               99.8707 %
+Incorrectly Classified Instances         9                0.1293 %
+Kappa statistic                          0.9983
+Mean absolute error                      0.0012
+Root mean squared error                  0.0261
+Relative absolute error                  0.3208 %
+Root relative squared error              6.0241 %
+Total Number of Instances             6960
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.995    0.000    1.000      0.995    0.997      0.997    0.998     0.998     negative
+                 1.000    0.001    0.997      1.000    0.998      0.998    0.999     0.996     compensated_hypothyroid
+                 1.000    0.000    0.999      1.000    0.999      0.999    1.000     0.998     primary_hypothyroid
+                 1.000    0.000    0.999      1.000    1.000      1.000    1.000     1.000     secondary_hypothyroid
+Weighted Avg.    0.999    0.000    0.999      0.999    0.999      0.998    0.999     0.998
+
+=== Confusion Matrix ===
+
+    a    b    c    d   <-- classified as
+ 1731    6    2    1 |    a = negative
+    0 1740    0    0 |    b = compensated_hypothyroid
+    0    0 1740    0 |    c = primary_hypothyroid
+    0    0    0 1740 |    d = secondary_hypothyroid
